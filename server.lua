@@ -1,5 +1,5 @@
 --------------------------
----By NachoASD @2020   ---
+---By NachoASD @2021   ---
 ---NachoASD#5887       ---
 --------------------------
 
@@ -72,12 +72,6 @@ AddEventHandler("asd_fichar:getName", function()
 		end) 
 end)
 
-
-
---SELECT `lastname` FROM `characters` WHERE `identifier` = @steam:11000011155e518
-
-
-
 RegisterNetEvent('asd_fichar:getNamef')
 AddEventHandler('asd_fichar:getNamef', function(source)
 	local identifiers = ExtractIdentifiers()
@@ -90,24 +84,6 @@ AddEventHandler('asd_fichar:getNamef', function(source)
 		return result[1].lastname
 	end)
 end)
-
---function GetCharacterName(source)
---	local result = MySQL.Sync.fetchAll('SELECT firstname, lastname FROM users WHERE identifier = @identifier', {
---		['@identifier'] = GetPlayerIdentifiers(source)
---	})
---	if result[1] and result[1].firstname and result[1].lastname then
---		print (('%s %s'):format(result[1].firstname, result[1].lastname))
---		return ('%s %s'):format(result[1].firstname, result[1].lastname)
---	else
---		return GetPlayerName(source)
---	end
---end
---
---RegisterNetEvent('asd_fichar:getName')
---AddEventHandler('asd_fichar:getName', function (source) 
---	print(GetCharacterName(source))
---	return GetCharacterName(source)
---end)
 
 RegisterServerEvent('asd_fichar:getJob')
 AddEventHandler('asd_fichar:getJob',function()
