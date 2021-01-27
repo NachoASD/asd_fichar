@@ -1,5 +1,5 @@
 --------------------------
----By NachoASD @2020   ---
+---By NachoASD @2021   ---
 ---NachoASD#5887       ---
 --------------------------
 
@@ -30,7 +30,7 @@ AddEventHandler("GetPlayerData", function(data)
     if data == nil then
         return
     end
-    _lastname = data[1].lastname
+    _lastname      = data[1].lastname
     _firstname     = data[1].firstname
 end)
 
@@ -81,7 +81,6 @@ Citizen.CreateThread(function()
         local _char = PlayerPedId()
         local _charPos = GetEntityCoords(_char)
         local _name = GetPlayerName(PlayerId())
-        --TriggerServerEvent('GetPlayerData')
         if #(_charPos - Config.policePos ) < 2 then
             _sleep = 0    
             JobBuilder(_char, _charPos, _firstname.. _lastname, "police", Config.policePos, "Policia", _firstname, _lastname, lastcount)
