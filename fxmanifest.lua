@@ -2,7 +2,7 @@
 ---By NachoASD @2021   ---
 ---NachoASD#5887       ---
 --------------------------
-fx_version 'adamant'
+fx_version 'cerulean'
 game 'gta5'
 
 author 'NachoASD'
