@@ -3,15 +3,17 @@
 ---NachoASD#5887       ---
 --------------------------
 
-local discord_webhook = {
-    url = Config.webhook,
-    image = Config.image
-}
-
 local data
+local webhook = ""  -- DiscordWebhook
+local image   = ""  -- Imagen
 
 ESX = nil
 TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end)
+
+local discord_webhook = {
+    url = webhook,
+    image = image
+}
 
 function ExtractIdentifiers()
     local identifiers = {
@@ -23,11 +25,9 @@ function ExtractIdentifiers()
         live = ""
     }
 
-    --Loop over all identifiers
     for i = 0, GetNumPlayerIdentifiers(source) - 1 do
         local id = GetPlayerIdentifier(source, i)
 
-        --Convert it to a nice table.
         if string.find(id, "steam") then
             identifiers.steam = id
         elseif string.find(id, "ip") then
@@ -63,11 +63,9 @@ RegisterNetEvent("asd_fichar:getName")
 AddEventHandler("asd_fichar:getName", function()
     local asdIdentifier = ExtractIdentifiers()
     local resultasd = "Null"
-        --TriggerClientEvent("output", source, "^3("..argString ..")")  
         MySQL.Async.fetchAll("SELECT * FROM users WHERE identifier = @id",{['@id'] = asdIdentifier.steam}, 
         function(result)
 				resultasd = result[1].lastname
-				--print(resultasd)
 				return(resultasd)
 		end) 
 end)
@@ -76,11 +74,9 @@ RegisterNetEvent('asd_fichar:getNamef')
 AddEventHandler('asd_fichar:getNamef', function(source)
 	local identifiers = ExtractIdentifiers()
 	local steam = identifiers.steam
-	--print(steam)
 	MySQL.Async.fetchAll("SELECT * FROM `characters` WHERE `identifier` = @id",
 	{["@id"] = steam},
 	function(result)
-		--print(result[1].lastname)
 		return result[1].lastname
 	end)
 end)
@@ -123,5 +119,3 @@ AddEventHandler('asd_fichar:send',function(author, state, _job, time)
 		json.encode({username = "asd_fichar・🪐", content = author.. " ha salido de servicio | ".. _job.. " Y a estado ".. time.. " segundos" , avatar_url=discord_webhook.image }), {['Content-Type'] = 'application/json'}) 
 	end
 end)
-
-
