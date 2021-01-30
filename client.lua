@@ -3,10 +3,7 @@
 ---NachoASD#5887       ---
 --------------------------
 
-local servicio    = false
-local isCnp       = false
 local job         = nil
-local getLastName = false
 local _firstname  = "Null"
 local _lastname   = "Null"
 local counting    = false
@@ -102,21 +99,21 @@ function JobBuilder(_char, _charPos, _name, jobName, jobPos, jobLabel, name, las
          TriggerServerEvent('asd_fichar:getJob')
      end
     if job == "off".. jobName then
-        Create3D(secondPos, "~r~Hola agente ".. name.. " ".. lastname)
-        Create3D(jobPos, "~b~Pulsa ~y~E~b~ para fichar y entrar de servicio")
+        Create3D(secondPos, _U('greet_job').. " ".. name.. " ".. lastname)
+        Create3D(jobPos, _U('enter_job'))
         if IsControlJustPressed(0, 38) then
             TriggerServerEvent('asd_fichar:changejob', jobName, true)
             TriggerServerEvent('asd_fichar:send', _name, true, jobLabel, time)
         end
     elseif job == jobName then
-         Create3D(secondPos, "~r~Hola agente ".. name.. " ".. lastname)
-         Create3D(jobPos, "~b~Pulsa ~y~E~b~ para fichar y salir de servicio") --- El texto 3D que quieres que muestre
+         Create3D(secondPos, _U('greet_job').. " ".. name.. " ".. lastname)
+         Create3D(jobPos, _U('exit_job')) --- El texto 3D que quieres que muestre
          if IsControlJustPressed(0, 38) then
              TriggerServerEvent('asd_fichar:changejob', jobName, false, jobName)
              TriggerServerEvent('asd_fichar:send', _name, false, jobLabel, time)
          end
      else
-         Create3D(jobPos, "~r~No eres ".. jobLabel)
+         Create3D(jobPos, _U('not_job').. " ".. jobLabel)
      end
 end
 

@@ -111,11 +111,11 @@ AddEventHandler('asd_fichar:send',function(author, state, _job, time)
 		PerformHttpRequest(discord_webhook.url, 
     	function(err, text, header) end, 
     	'POST',    --            El "autor" del mensaje | el usuario |                           El avatar que va a tener el "autor"
-		json.encode({username = "asd_fichar・🪐", content = author.. " ha entrado de servicio | ".. _job , avatar_url=discord_webhook.image }), {['Content-Type'] = 'application/json'}) 
+		json.encode({username = "asd_fichar・🪐", content = author.. _U('enter_job_dc')..' | '.. _job , avatar_url=discord_webhook.image }), {['Content-Type'] = 'application/json'}) 
 	else
 		PerformHttpRequest(discord_webhook.url, 
 		function(err, text, header) end, 
 		'POST',    --            El "autor" del mensaje | el usuario |                           El avatar que va a tener el "autor" 
-		json.encode({username = "asd_fichar・🪐", content = author.. " ha salido de servicio | ".. _job.. " Y a estado ".. time.. " segundos" , avatar_url=discord_webhook.image }), {['Content-Type'] = 'application/json'}) 
+		json.encode({username = "asd_fichar・🪐", content = author.. _U('exit_job_dc')..' | '.. _job.. ' | '.. _U('inservicetime').. time.. ' '.. _U('time') , avatar_url=discord_webhook.image }), {['Content-Type'] = 'application/json'}) 
 	end
 end)
